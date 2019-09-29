@@ -10,27 +10,37 @@ import javax.persistence.Table;
 /**
  * 
  * @author Willian Kaminski
- * @since 28-09-19
+ * @since 29-09-19
  * @version 1.0
  */
 @Entity
-@Table(name = "paises", schema = "public")
-public class Pais implements Serializable{
+@Table(name = "cidades", schema = "public")
+public class Cidade implements Serializable{
     
     private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long i_paises;
+    private long i_cidades;
+    
+    private long i_estados;
     
     private String nome;
 
-    public long getI_paises() {
-        return i_paises;
+    public long getI_cidades() {
+        return i_cidades;
     }
 
-    public void setI_paises(long i_paises) {
-        this.i_paises = i_paises;
+    public void setI_cidades(long i_cidades) {
+        this.i_cidades = i_cidades;
+    }
+
+    public long getI_estados() {
+        return i_estados;
+    }
+
+    public void setI_estados(long i_estados) {
+        this.i_estados = i_estados;
     }
 
     public String getNome() {
@@ -39,5 +49,5 @@ public class Pais implements Serializable{
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
+    }    
 }
