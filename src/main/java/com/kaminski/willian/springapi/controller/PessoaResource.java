@@ -1,7 +1,7 @@
 package com.kaminski.willian.springapi.controller;
 
 import com.kaminski.willian.springapi.models.Pessoa;
-import com.kaminski.willian.springapi.repository.PessoaRepository;
+import com.kaminski.willian.springapi.service.PessoaService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
@@ -30,41 +30,41 @@ import org.springframework.web.bind.annotation.RestController;
 public class PessoaResource {
     
     @Autowired
-    PessoaRepository pessoaRepository;
+    PessoaService pessoaService;
     
     @GetMapping(value = "/pessoas")
     @ApiOperation(value = "Retorna uma lista de Pessoas")
     public List<Pessoa> listPessoas(){
-        return pessoaRepository.findAll();
+        return pessoaService.getAllPessoas();
     }
     
     @GetMapping(value = "/pessoa/{id}")
     @ApiOperation(value = "Retorna uma pessoa unica")
     public Pessoa listUnicPessoas(@PathVariable(value = "id") long id){
-        return pessoaRepository.findById(id);
+        return pessoaService.getPessoa(id);
     }
     
     @PostMapping(value = "/pessoa")
     @ApiOperation(value = "Salva uma Pessoa")
     public Pessoa savePessoa(@RequestBody Pessoa pessoa){
-        return pessoaRepository.save(pessoa);
+        return pessoaService.postPessoa(pessoa);
     }
     
     @DeleteMapping(value = "/pessoa")
     @ApiOperation(value = "Deleta uma Pessoa")
     public void deletePessoa(@RequestBody Pessoa pessoa){
-        pessoaRepository.delete(pessoa);
+        pessoaService.deletePeople(pessoa);
     }
     
     @DeleteMapping(value = "/pessoa/{id}")
     @ApiOperation(value = "Deleta uma pessoa com base no seu Id")
     public void deletePessoa(@PathVariable(value = "id") long id){
-        pessoaRepository.deleteById(id);
+        pessoaService.deletePeople(id);
     }
     
     @PutMapping(value = "/pessoa")
     @ApiOperation(value = "Atualiza os dados da Pessoa")
     public Pessoa putPessoa(@RequestBody Pessoa pessoa){
-        return pessoaRepository.save(pessoa);
+        return pessoaService.putPessoa(pessoa);
     }
 }

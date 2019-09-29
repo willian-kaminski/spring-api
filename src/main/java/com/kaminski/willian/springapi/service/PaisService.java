@@ -21,7 +21,7 @@ public class PaisService {
 
     public List<Pais> getAllPaises(){
         return paisRepository.findAll();   
-    };
+    }
     
     public Pais getPais(long id){
         return paisRepository.findById(id);                
