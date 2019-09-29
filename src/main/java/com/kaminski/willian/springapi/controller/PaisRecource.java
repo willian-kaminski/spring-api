@@ -1,7 +1,7 @@
 package com.kaminski.willian.springapi.controller;
 
 import com.kaminski.willian.springapi.models.Pais;
-import com.kaminski.willian.springapi.repository.PaisRepository;
+import com.kaminski.willian.springapi.service.PaisService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,35 +24,35 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaisRecource {
     
     @Autowired
-    PaisRepository paisRepository;
+    PaisService paisService;
     
     @GetMapping(value = "/paises")
     public List<Pais> listPais(){
-        return paisRepository.findAll();
+        return paisService.getAllPaises();
     }
     
     @GetMapping(value = "/pais/{id}")
     public Pais listUnicPais(@PathVariable(value = "id") long id){
-        return paisRepository.findById(id); 
+        return paisService.getPais(id); 
     }
     
     @PostMapping(value = "/pais")
-    public Pais savePais(@RequestBody Pais pais){
-        return paisRepository.save(pais);
+    public Pais savePais(@RequestBody Pais pais){ 
+        return paisService.postPais(pais);
     }
     
     @DeleteMapping(value = "/pais")
     public void deletePais(@RequestBody Pais pais){
-        paisRepository.delete(pais);
+        paisService.deletePais(pais);
     }
     
     @DeleteMapping(value = "/pais/{id}")
     public void deletePais(@PathVariable(value = "id") long id){
-        paisRepository.deleteById(id);
+        paisService.deletePais(id);
     }
     
     @PutMapping(value = "/pais")
     public Pais putPais(@RequestBody Pais pais){
-        return paisRepository.save(pais);
+        return paisService.putPais(pais);
     }
 }

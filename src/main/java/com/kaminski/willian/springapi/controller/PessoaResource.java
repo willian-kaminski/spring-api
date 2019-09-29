@@ -41,7 +41,7 @@ public class PessoaResource {
     @GetMapping(value = "/pessoa/{id}")
     @ApiOperation(value = "Retorna uma pessoa unica")
     public Pessoa listUnicPessoas(@PathVariable(value = "id") long id){
-        return pessoaRepository.findById(id); 
+        return pessoaRepository.findById(id);
     }
     
     @PostMapping(value = "/pessoa")
